@@ -124,7 +124,6 @@ describe("Given I am connected as an employee", () => {
         document.body.appendChild(root)
         router()
       })
-      afterEach(() => root.innerHTML = "")
 
       test("Then it try to fetch bills from an API and fails with 404 message error", async () => {
 
@@ -136,7 +135,7 @@ describe("Given I am connected as an employee", () => {
           }
         })
         window.onNavigate(ROUTES_PATH.Bills)
-        await new Promise(process.nextTick);
+        await new Promise(process.nextTick)
         const message = screen.getByText(/Erreur 404/)
         expect(message).toBeTruthy()
       })
@@ -152,7 +151,7 @@ describe("Given I am connected as an employee", () => {
         })
 
         window.onNavigate(ROUTES_PATH.Bills)
-        await new Promise(process.nextTick);
+        await new Promise(process.nextTick)
         const message = screen.getByText(/Erreur 500/)
         expect(message).toBeTruthy()
       })
