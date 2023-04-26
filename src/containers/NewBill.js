@@ -21,6 +21,7 @@ export default class NewBill {
     //test file name with a regex, alert and reset file input if file extension is different from jpg, jpeg or png
     const allowedImgFileRegex = new RegExp('\.(jpg|jpeg|png)$', 'i')
     if (file && allowedImgFileRegex.test(file.name)) {
+      this.document.querySelector("span.error-message").classList.add("hidden-message")
       const filePath = e.target.value.split(/\\/g)
       const fileName = filePath[filePath.length - 1]
       const formData = new FormData()
@@ -43,7 +44,7 @@ export default class NewBill {
           this.fileName = fileName
         }).catch(error => console.error(error))
     } else {
-      alert("Format de fichier non autorisé, merci d'uploader une image au format jpg, jpeg ou png")
+      this.document.querySelector("span.error-message").classList.remove("hidden-message")
       this.document.querySelector(`input[data-testid="file"]`).value = ""
     }
   }
